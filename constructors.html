@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+     <head>
+         <title> Javascript Object Constructors </title>
+     </head>
+
+     <body>
+         <h2> Javascript Object Constructors </h2>
+         <p id="demo"></p>
+         <p id="demo1"></p>
+         <p id="demo2"></p>
+         <p id="demo3"></p>
+         <p id="demo4"></p>
+
+         <script>
+
+                //Constructor function for person object
+                // "this" --> is the object that owns the code.
+                function Person(first, last, age, eye)
+                {
+                    this.firstName = first;
+                    this.lastName = last;
+                    this.age = age;
+                    this.eyeColor = eye;
+                    this.nationality = "English";
+
+                    this.fullname = function()
+                    {
+                        return this.firstName + " " + this.lastName;
+                    }
+
+                    this.changeName = function(name)
+                    {
+                        this.lastName = name;
+                    }
+                }
+
+                // CREATE 2 OBJECTS : Person
+                // Objects of the same type are created --> by calling --> constructor fxn wid "new" keyword
+                
+                const myFather = new Person("John", "Brown", 45, "Blue");   //constructor fxn
+                const myMother = new Person("Sally", "Brown", 44, "Black");
+
+                //ADD NEW PROPERTY TO MyFather (1 object)
+                //myFather.nationality = "English";
+                myFather.salary = 10000;
+
+                //ADD NEW PROPERTY TO MyMother (1 object)
+                myMother.noOfDishes = 7;
+
+                // ADD A NEW METHOD/FUNCTION TO myFather(1 object)
+                 myFather.fullName = function()
+                {
+                    return this.firstName + " " + this.lastName;
+                };
+
+                 //PROTOTYPE METHOD
+                /* Person.prototype.fullName = function()
+                {
+                    return this.firstName + " " + this.lastName;
+                };*/
+
+
+                // CANNOT ADD PROPERTY TO AN OBJECT CONSTRUCTOR
+                 Person.nationality = "English";
+                 
+                            //prpototype property
+                            //person.prototype.nationality = "English";
+
+                 // CHANGE THE LAST NAME OF MyMother
+                 myMother.changeName("Doe");
+                //DISPLAY
+
+                  document.getElementById("demo").innerHTML = "My father is" + " " + myFather.age + " " + "My mother age is" + " " + myMother.age;
+                  document.getElementById("demo").innerHTML = "My father is" + " " + myFather.nationality + " " + "My mother age is" + " " + myMother.nationality;
+                  document.getElementById("demo").innerHTML = "My father earns" + " " + myFather.salary + "USD. My mother can cook" + " " + myMother.noOfDishes + " " + "items in one go.";
+                  document.getElementById("demo1").innerHTML = "The fullname of my father is" + " " +  myFather.fullName() + ".";
+                  document.getElementById("demo2").innerHTML = "I am adding property to object constructor and want to see the output in father" + " " + myFather.nationality + " " + "and mother" + " " + myMother.nationality;
+                  document.getElementById("demo3").innerHTML = "The fullname of my father is" + " " + myFather.fullname() + "Mother's fullname is" + " " + myMother.fullname(); 
+                  document.getElementById("demo4").innerHTML = "The last name of my mother is" + " " + myMother.lastName; 
+        </script>
+     </body>
+</html>
